@@ -1,0 +1,9 @@
+{
+    "name": "defr/version_control-extension",
+    "type": "streams-addon",
+    "autoload": {
+        "psr-4": {
+            "Defr\\VersionControlExtension\\": "src/"
+        }
+    }
+}
