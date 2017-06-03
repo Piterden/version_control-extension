@@ -10,22 +10,22 @@ class SetRevisionTableEntries
 {
 
     /**
-     * @var mixed
+     * @var RevisionTableBuilder
      */
     protected $builder;
 
     /**
-     * @var mixed
+     * @var string
      */
     protected $namespace;
 
     /**
-     * @var mixed
+     * @var string
      */
     protected $slug;
 
     /**
-     * @var mixed
+     * @var int|null
      */
     protected $id;
 
@@ -56,12 +56,17 @@ class SetRevisionTableEntries
      */
     function handle(RevisionRepositoryInterface $revisions)
     {
-        $this->builder->setEntries(
-            $revisions->findAllByNamespaceSlugAndId(
-                $this->namespace,
-                $this->slug,
-                $this->id
-            )
+        $entries = $this->id
+        ? $revisions->findAllByNamespaceSlugAndId(
+            $this->namespace,
+            $this->slug,
+            $this->id
+        )
+        : $revisions->findAllByNamespaceAndSlug(
+            $this->namespace,
+            $this->slug
         );
+
+        $this->builder->setEntries($entries);
     }
 }

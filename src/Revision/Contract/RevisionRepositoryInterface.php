@@ -6,14 +6,6 @@ interface RevisionRepositoryInterface extends EntryRepositoryInterface
 {
 
     /**
-     * [create description]
-     *
-     * @param  array  $attributes [description]
-     * @return [type]             [description]
-     */
-    public function create(array $attributes);
-
-    /**
      * Find all revisions of one stream
      *
      * @param string $namespace

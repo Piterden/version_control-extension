@@ -14,7 +14,7 @@ class RevisionsController extends AdminController
      * @param RevisionTableBuilder $table
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(RevisionTableBuilder $table, $namespace, $slug, $id)
+    public function index(RevisionTableBuilder $table, $namespace, $slug, $id = null)
     {
         $this->dispatch(new SetRevisionTableEntries($table, $namespace, $slug, $id));
 
@@ -27,7 +27,7 @@ class RevisionsController extends AdminController
      * @param RevisionTableBuilder $table
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function shortIndex(RevisionTableBuilder $table, $namespace, $id)
+    public function shortIndex(RevisionTableBuilder $table, $namespace, $id = null)
     {
         $this->dispatch(new SetRevisionTableEntries($table, $namespace, $namespace, $id));
 
@@ -40,7 +40,7 @@ class RevisionsController extends AdminController
      * @param $slug
      * @param $id
      */
-    public function show(RevisionFormBuilder $form, $namespace, $slug, $id)
+    public function show(RevisionFormBuilder $form, $namespace, $slug, $id = null)
     {
 
     }
@@ -50,7 +50,7 @@ class RevisionsController extends AdminController
      * @param $namespace
      * @param $id
      */
-    public function shortShow(RevisionFormBuilder $form, $namespace, $id)
+    public function shortShow(RevisionFormBuilder $form, $namespace, $id = null)
     {
 
     }

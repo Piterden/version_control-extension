@@ -2,9 +2,11 @@
 
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
 use Anomaly\Streams\Platform\Model\VersionControl\VersionControlRevisionsEntryModel;
+use Anomaly\Streams\Platform\Ui\ControlPanel\Component\Section\Event\GatherSections;
 use Anomaly\Streams\Platform\Ui\Form\Event\FormWasValidated;
 use Anomaly\Streams\Platform\Ui\Table\Event\TableIsQuerying;
 use Anomaly\Streams\Platform\Ui\Tree\Event\TreeIsQuerying;
+use Defr\VersionControlExtension\Listener\AddButtonToControlPanel;
 use Defr\VersionControlExtension\Listener\AddButtonToTable;
 use Defr\VersionControlExtension\Listener\AddButtonToTree;
 use Defr\VersionControlExtension\Listener\RegisterButtons;
@@ -40,10 +42,10 @@ class VersionControlExtensionServiceProvider extends AddonServiceProvider
      * @var array|null
      */
     protected $routes = [
-        'admin/{namespace}/revisions/{id}'            => 'Defr\VersionControlExtension\Http\Controller\Admin\RevisionsController@shortIndex',
-        'admin/{namespace}/{slug}/revisions/{id}'     => 'Defr\VersionControlExtension\Http\Controller\Admin\RevisionsController@index',
-        'admin/{namespace}/show_revision/{id}'        => 'Defr\VersionControlExtension\Http\Controller\Admin\RevisionsController@shortShow',
-        'admin/{namespace}/{slug}/show_revision/{id}' => 'Defr\VersionControlExtension\Http\Controller\Admin\RevisionsController@show',
+        'admin/{namespace}/revisions/{id?}'            => 'Defr\VersionControlExtension\Http\Controller\Admin\RevisionsController@shortIndex',
+        'admin/{namespace}/{slug}/revisions/{id?}'     => 'Defr\VersionControlExtension\Http\Controller\Admin\RevisionsController@index',
+        'admin/{namespace}/show_revision/{id?}'        => 'Defr\VersionControlExtension\Http\Controller\Admin\RevisionsController@shortShow',
+        'admin/{namespace}/{slug}/show_revision/{id?}' => 'Defr\VersionControlExtension\Http\Controller\Admin\RevisionsController@show',
     ];
 
     /**
@@ -57,6 +59,9 @@ class VersionControlExtensionServiceProvider extends AddonServiceProvider
         ],
         TreeIsQuerying::class   => [
             AddButtonToTree::class,
+        ],
+        GatherSections::class   => [
+            AddButtonToControlPanel::class,
         ],
         FormWasValidated::class => [
             NewRevision::class,
