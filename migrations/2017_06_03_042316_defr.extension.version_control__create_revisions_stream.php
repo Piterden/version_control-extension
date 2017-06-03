@@ -13,10 +13,6 @@ class DefrExtensionVersionControlCreateRevisionsStream extends Migration
     protected $stream = [
         'slug'         => 'revisions',
         'title_column' => 'namespace',
-        // 'translatable' => true,
-        // 'trashable'    => true,
-        'sortable'     => true,
-        'searchable'   => true,
     ];
 
     /**
@@ -34,6 +30,7 @@ class DefrExtensionVersionControlCreateRevisionsStream extends Migration
         'parent'    => [
             'required' => true,
         ],
+        'data',
     ];
 
 }

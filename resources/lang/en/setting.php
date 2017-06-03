@@ -2,6 +2,6 @@
 
 return [
     'enabled_streams' => [
-        'name' => 'Enabled Streams',
+        'name' => 'Versionizing Enabled Streams',
     ],
 ];

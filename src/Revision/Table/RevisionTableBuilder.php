@@ -6,25 +6,16 @@ class RevisionTableBuilder extends TableBuilder
 {
 
     /**
-     * The table views.
-     *
-     * @var array|string
-     */
-    protected $views = [];
-
-    /**
-     * The table filters.
-     *
-     * @var array|string
-     */
-    protected $filters = [];
-
-    /**
      * The table columns.
      *
      * @var array|string
      */
-    protected $columns = [];
+    protected $columns = [
+        'entry.created_at',
+        'namespace',
+        'slug',
+        'parent',
+    ];
 
     /**
      * The table buttons.
@@ -32,7 +23,7 @@ class RevisionTableBuilder extends TableBuilder
      * @var array|string
      */
     protected $buttons = [
-        'edit'
+        'show_revision',
     ];
 
     /**
@@ -41,21 +32,6 @@ class RevisionTableBuilder extends TableBuilder
      * @var array|string
      */
     protected $actions = [
-        'delete'
+        'delete',
     ];
-
-    /**
-     * The table options.
-     *
-     * @var array
-     */
-    protected $options = [];
-
-    /**
-     * The table assets.
-     *
-     * @var array
-     */
-    protected $assets = [];
-
 }

@@ -1,7 +1,6 @@
 <?php
 
 use Anomaly\Streams\Platform\Database\Migration\Migration;
-use Anomaly\Streams\Platform\Entry\EntryModel;
 
 class DefrExtensionVersionControlCreateVersionControlFields extends Migration
 {
@@ -14,11 +13,7 @@ class DefrExtensionVersionControlCreateVersionControlFields extends Migration
     protected $fields = [
         'namespace' => 'anomaly.field_type.text',
         'slug'      => 'anomaly.field_type.text',
-        'parent'    => [
-            'type'   => 'anomaly.field_type.relationship',
-            'config' => [
-                'related' => EntryModel::class,
-            ],
-        ],
+        'parent'    => 'anomaly.field_type.integer',
+        'data'      => 'anomaly.field_type.textarea',
     ];
 }

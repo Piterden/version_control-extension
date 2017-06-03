@@ -23,5 +23,14 @@ class RegisterButtons
                 'icon' => 'fa fa-tasks',
             ]
         );
+
+        $registry->register(
+            'show_revision',
+            [
+                'type' => 'info',
+                'text' => 'Show Revision',
+                'icon' => 'fa fa-eye',
+            ]
+        );
     }
 }
