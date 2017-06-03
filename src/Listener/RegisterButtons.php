@@ -11,7 +11,7 @@ class RegisterButtons
     /**
      * Handle the event
      *
-     * @param  ButtonRegistry $registry
+     * @param ButtonRegistry $registry
      */
     public function handle(ButtonRegistry $registry)
     {
@@ -30,7 +30,7 @@ class RegisterButtons
                 'type' => 'info',
                 'text' => 'defr.extension.version_control::button.show_revision',
                 'icon' => 'fa fa-eye',
-                'href' => 'admin/{entry.namespace}/show_revision/{entry.parent}/{entry.id}'
+                'href' => 'admin/{entry.namespace}/show_revision/{entry.parent}/{entry.id}',
             ]
         );
     }

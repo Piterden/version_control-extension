@@ -34,7 +34,7 @@ class AddButtonToControlPanel
     /**
      * Handle the event
      *
-     * @param  GatherSections $event
+     * @param GatherSections $event
      */
     public function handle(GatherSections $event)
     {

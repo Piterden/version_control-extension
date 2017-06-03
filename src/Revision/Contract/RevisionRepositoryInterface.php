@@ -8,26 +8,26 @@ interface RevisionRepositoryInterface extends EntryRepositoryInterface
     /**
      * Find all revisions of one stream
      *
-     * @param string $namespace
-     * @param string $slug
+     * @param  $namespace
+     * @param  $slug
      * @return RevisionCollection
      */
     public function findAllByNamespaceAndSlug(
-        string $namespace,
-        string $slug
+        $namespace,
+        $slug
     );
 
     /**
      * Find all revisions of one stream
      *
-     * @param string $namespace
-     * @param string $slug
-     * @param string|int $parent
+     * @param  $namespace
+     * @param  $slug
+     * @param  $parent
      * @return RevisionCollection
      */
     public function findAllByNamespaceSlugAndParent(
-        string $namespace,
-        string $slug,
+        $namespace,
+        $slug,
         $parent
     );
 }

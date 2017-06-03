@@ -18,15 +18,6 @@ class RevisionTableBuilder extends TableBuilder
     ];
 
     /**
-     * The table buttons.
-     *
-     * @var array|string
-     */
-    protected $buttons = [
-        'show_revision',
-    ];
-
-    /**
      * The table actions.
      *
      * @var array|string

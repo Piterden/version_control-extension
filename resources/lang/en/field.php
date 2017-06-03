@@ -8,7 +8,7 @@ return [
         'name' => 'Slug',
     ],
     'parent'    => [
-        'name' => 'Parent model',
+        'name' => 'Parent entry id',
     ],
     'data'      => [
         'name' => 'Data',

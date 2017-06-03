@@ -26,13 +26,13 @@ class RevisionRepository extends EntryRepository implements RevisionRepositoryIn
     /**
      * Find all revisions of one stream
      *
-     * @param string $namespace
-     * @param string $slug
+     * @param  $namespace
+     * @param  $slug
      * @return RevisionCollection
      */
     public function findAllByNamespaceAndSlug(
-        string $namespace,
-        string $slug
+        $namespace,
+        $slug
     )
     {
         return $this->model
@@ -44,21 +44,23 @@ class RevisionRepository extends EntryRepository implements RevisionRepositoryIn
     /**
      * Find all revisions of one stream
      *
-     * @param  string               $namespace
-     * @param  string               $slug
-     * @param  int                  $parent
+     * @param  $namespace
+     * @param  $slug
+     * @param  $identifier
      * @return RevisionCollection
      */
     public function findAllByNamespaceSlugAndParent(
-        string $namespace,
-        string $slug,
-        $parent
+        $namespace,
+        $slug,
+        $identifier
     )
     {
         return $this->model
-            ->where('namespace', $namespace)
-            ->where('slug', $slug)
-            ->where('parent', $parent)
+            ->where([
+                'namespace' => $namespace,
+                'slug'      => $slug,
+                'parent'    => $identifier,
+            ])
             ->get();
     }
 }

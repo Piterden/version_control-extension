@@ -5,4 +5,63 @@ use Anomaly\Streams\Platform\Entry\EntryCriteria;
 class RevisionCriteria extends EntryCriteria
 {
 
+    /**
+     * By namespace limiting
+     *
+     * @param  $namespace
+     * @return $this
+     */
+    public function ofNamespace($namespace)
+    {
+        $this->query->where('namespace', $namespace);
+
+        return $this;
+    }
+
+    /**
+     * Return chronologically.
+     *
+     * @return $this
+     */
+    public function recent()
+    {
+        $this->query->orderBy('created_at', 'DESC');
+
+        return $this;
+    }
+
+    /**
+     * By slug limiting
+     *
+     * @param  $slug
+     * @return $this
+     */
+    public function ofSlug($slug)
+    {
+        $this->query->where('slug', $slug);
+
+        return $this;
+    }
+
+    /**
+     * Add the parent constraint.
+     *
+     * @param  $namespace
+     * @param  $slug
+     * @param  $identifier
+     * @return $this
+     */
+    public function ofParent(
+        $namespace,
+        $slug,
+        $identifier
+    )
+    {
+        $this->query
+            ->where('parent', $identifier)
+            ->where('namespace', $namespace)
+            ->where('slug', $slug);
+
+        return $this;
+    }
 }

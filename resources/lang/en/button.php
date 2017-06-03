@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'revisions' => 'Revisions',
+    'revisions'     => 'Revisions',
+    'show_revision' => 'Show Revision',
 ];

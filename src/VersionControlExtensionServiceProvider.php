@@ -42,8 +42,8 @@ class VersionControlExtensionServiceProvider extends AddonServiceProvider
      * @var array|null
      */
     protected $routes = [
-        'admin/{namespace}/revisions/{parent?}'            => 'Defr\VersionControlExtension\Http\Controller\Admin\RevisionsController@shortIndex',
-        'admin/{namespace}/{slug}/revisions/{parent?}'     => 'Defr\VersionControlExtension\Http\Controller\Admin\RevisionsController@index',
+        'admin/{namespace}/revisions/{parent?}'                  => 'Defr\VersionControlExtension\Http\Controller\Admin\RevisionsController@shortIndex',
+        'admin/{namespace}/{slug}/revisions/{parent?}'           => 'Defr\VersionControlExtension\Http\Controller\Admin\RevisionsController@index',
         'admin/{namespace}/show_revision/{parent?}/{id?}'        => 'Defr\VersionControlExtension\Http\Controller\Admin\RevisionsController@shortShow',
         'admin/{namespace}/{slug}/show_revision/{parent?}/{id?}' => 'Defr\VersionControlExtension\Http\Controller\Admin\RevisionsController@show',
     ];

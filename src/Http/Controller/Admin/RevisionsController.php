@@ -11,23 +11,30 @@ class RevisionsController extends AdminController
     /**
      * Display an index of existing entries.
      *
-     * @param RevisionTableBuilder $table
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param  RevisionTableBuilder $table
+     * @return Response
      */
-    public function index(RevisionTableBuilder $table, $namespace, $slug, $parent = null)
+    public function index(
+        RevisionTableBuilder $table,
+        $namespace,
+        $slug,
+        $parent = null
+    )
     {
-        return $this->dispatch(
-            new SetRevisionTableEntries($table, $namespace, $slug, $parent)
-        )->render();
+        return $table->render();
     }
 
     /**
      * Display an index of existing entries.
      *
-     * @param RevisionTableBuilder $table
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param  RevisionTableBuilder $table
+     * @return Response
      */
-    public function shortIndex(RevisionTableBuilder $table, $namespace, $parent = null)
+    public function shortIndex(
+        RevisionTableBuilder $table,
+        $namespace,
+        $parent = null
+    )
     {
         return $this->index($table, $namespace, $namespace, $parent);
     }
@@ -38,7 +45,13 @@ class RevisionsController extends AdminController
      * @param $slug
      * @param $id
      */
-    public function show(RevisionFormBuilder $form, $namespace, $slug, $parent, $id = null)
+    public function show(
+        RevisionFormBuilder $form,
+        $namespace,
+        $slug,
+        $parent,
+        $id = null
+    )
     {
         return $form->render($id);
     }
@@ -48,7 +61,12 @@ class RevisionsController extends AdminController
      * @param $namespace
      * @param $id
      */
-    public function shortShow(RevisionFormBuilder $form, $namespace, $parent, $id = null)
+    public function shortShow(
+        RevisionFormBuilder $form,
+        $namespace,
+        $parent,
+        $id = null
+    )
     {
         return $form->render($id);
     }

@@ -51,7 +51,7 @@ class SetRevisionTableEntries
     /**
      * Handle the command
      *
-     * @param  RevisionRepositoryInterface $revisions
+     * @param    RevisionRepositoryInterface $revisions
      * @return
      */
     function handle(RevisionRepositoryInterface $revisions)
