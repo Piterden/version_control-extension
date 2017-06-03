@@ -35,30 +35,30 @@ class RevisionRepository extends EntryRepository implements RevisionRepositoryIn
         string $slug
     )
     {
-        return $this->model->where([
-            'namespace' => $namespace,
-            'slug'      => $slug,
-        ])->get();
+        return $this->model
+            ->where('namespace', $namespace)
+            ->where('slug', $slug)
+            ->get();
     }
 
     /**
      * Find all revisions of one stream
      *
-     * @param string $namespace
-     * @param string $slug
-     * @param string|int $id
+     * @param  string               $namespace
+     * @param  string               $slug
+     * @param  int                  $parent
      * @return RevisionCollection
      */
-    public function findAllByNamespaceSlugAndId(
+    public function findAllByNamespaceSlugAndParent(
         string $namespace,
         string $slug,
-        $id
+        $parent
     )
     {
-        return $this->model->where([
-            'namespace' => $namespace,
-            'slug'      => $slug,
-            'id'        => $id,
-        ])->get();
+        return $this->model
+            ->where('namespace', $namespace)
+            ->where('slug', $slug)
+            ->where('parent', $parent)
+            ->get();
     }
 }

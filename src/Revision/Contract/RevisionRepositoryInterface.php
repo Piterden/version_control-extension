@@ -22,12 +22,12 @@ interface RevisionRepositoryInterface extends EntryRepositoryInterface
      *
      * @param string $namespace
      * @param string $slug
-     * @param string|int $id
+     * @param string|int $parent
      * @return RevisionCollection
      */
-    public function findAllByNamespaceSlugAndId(
+    public function findAllByNamespaceSlugAndParent(
         string $namespace,
         string $slug,
-        $id
+        $parent
     );
 }

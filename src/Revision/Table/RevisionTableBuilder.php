@@ -12,9 +12,9 @@ class RevisionTableBuilder extends TableBuilder
      */
     protected $columns = [
         'entry.created_at',
-        'namespace',
-        'slug',
-        'parent',
+        'entry.namespace',
+        'entry.slug',
+        'entry.parent',
     ];
 
     /**

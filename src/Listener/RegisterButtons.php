@@ -28,8 +28,9 @@ class RegisterButtons
             'show_revision',
             [
                 'type' => 'info',
-                'text' => 'Show Revision',
+                'text' => 'defr.extension.version_control::button.show_revision',
                 'icon' => 'fa fa-eye',
+                'href' => 'admin/{entry.namespace}/show_revision/{entry.parent}/{entry.id}'
             ]
         );
     }

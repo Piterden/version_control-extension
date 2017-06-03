@@ -27,25 +27,25 @@ class SetRevisionTableEntries
     /**
      * @var int|null
      */
-    protected $id;
+    protected $parent;
 
     /**
      * @param $builder
      * @param $namespace
      * @param $slug
-     * @param $id
+     * @param $parent
      */
     public function __construct(
         RevisionTableBuilder $builder,
         string $namespace,
         string $slug,
-        $id
+        $parent = null
     )
     {
         $this->builder   = $builder;
         $this->namespace = $namespace;
         $this->slug      = $slug;
-        $this->id        = $id;
+        $this->parent    = $parent;
     }
 
     /**
@@ -56,17 +56,22 @@ class SetRevisionTableEntries
      */
     function handle(RevisionRepositoryInterface $revisions)
     {
-        $entries = $this->id
-        ? $revisions->findAllByNamespaceSlugAndId(
+        $entries = ($this->parent !== null)
+        ? $revisions->findAllByNamespaceSlugAndParent(
             $this->namespace,
             $this->slug,
-            $this->id
+            $this->parent
         )
         : $revisions->findAllByNamespaceAndSlug(
             $this->namespace,
             $this->slug
         );
 
-        $this->builder->setEntries($entries);
+        if (!$entries->count())
+        {
+            $entries = collect([]);
+        }
+
+        return $this->builder->setTableEntries($entries);
     }
 }
