@@ -4,9 +4,11 @@ use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
 use Anomaly\Streams\Platform\Model\VersionControl\VersionControlRevisionsEntryModel;
 use Anomaly\Streams\Platform\Ui\Table\Event\TableIsQuerying;
 use Anomaly\Streams\Platform\Ui\Tree\Event\TreeIsQuerying;
-use Defr\VersionControlExtension\Command\AddButtonToTable;
-use Defr\VersionControlExtension\Command\AddButtonToTree;
-use Defr\VersionControlExtension\Command\RegisterButtons;
+use Anomaly\Streams\Platform\Ui\Form\Event\FormWasSaved;
+use Defr\VersionControlExtension\Listener\AddButtonToTable;
+use Defr\VersionControlExtension\Listener\AddButtonToTree;
+use Defr\VersionControlExtension\Listener\RegisterButtons;
+use Defr\VersionControlExtension\Revision\Listener\CreateRevision;
 use Defr\VersionControlExtension\Revision\Contract\RevisionRepositoryInterface;
 use Defr\VersionControlExtension\Revision\RevisionModel;
 use Defr\VersionControlExtension\Revision\RevisionRepository;
@@ -54,6 +56,9 @@ class VersionControlExtensionServiceProvider extends AddonServiceProvider
         TreeIsQuerying::class  => [
             AddButtonToTree::class,
         ],
+        FormWasSaved::class => [
+            CreateRevision::class,
+        ]
     ];
 
     /**

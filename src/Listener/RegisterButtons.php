@@ -1,4 +1,4 @@
-<?php namespace Defr\VersionControlExtension\Command;
+<?php namespace Defr\VersionControlExtension\Listener;
 
 use Anomaly\Streams\Platform\Ui\Button\ButtonRegistry;
 
@@ -9,7 +9,7 @@ class RegisterButtons
 {
 
     /**
-     * Handle the command
+     * Handle the event
      *
      * @param  ButtonRegistry $registry
      */

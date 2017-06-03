@@ -1,4 +1,4 @@
-<?php namespace Defr\VersionControlExtension\Command;
+<?php namespace Defr\VersionControlExtension\Listener;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Ui\Table\Event\TableIsQuerying;
@@ -10,15 +10,30 @@ class AddButtonToTable
 {
 
     /**
-     * Handle the command
+     * Repository of settings
+     *
+     * @var SettingRepositoryInterface
+     */
+    protected $settings;
+
+    /**
+     * Create an instance of CreateRevision class
+     *
+     * @param SettingRepositoryInterface $settings
+     */
+    public function __construct(SettingRepositoryInterface $settings)
+    {
+        $this->settings = $settings;
+    }
+
+    /**
+     * Handle the event
      *
      * @param  TableIsQuerying            $event
      */
     public function handle(TableIsQuerying $event)
     {
-        $settings = app(SettingRepositoryInterface::class);
-
-        $enabled_streams = $settings->value(
+        $enabled_streams = $this->settings->value(
             'defr.extension.version_control::enabled_streams'
         );
 
@@ -36,9 +51,10 @@ class AddButtonToTable
             return;
         }
 
-        $reference = $stream->getNamespace() . '_' . $stream->getSlug();
-
-        if (!in_array($reference, $enabled_streams))
+        if (!in_array(
+            $stream->getNamespace() . '_' . $stream->getSlug(),
+            $enabled_streams
+        ))
         {
             return;
         }
