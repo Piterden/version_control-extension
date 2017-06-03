@@ -53,17 +53,17 @@ class AddButtonToControlPanel
 
         foreach ($sections as $slug => $section)
         {
-            if (!in_array($namespace . '_' . $slug, $enabled))
+            if (in_array($namespace . '_' . $slug, $enabled))
             {
-                array_set($updated, $slug, $section);
+                $slug = $slug . '.buttons';
 
-                continue;
+                $section = array_merge(
+                    array_get($section, 'buttons', []),
+                    ['revisions']
+                );
             }
 
-            array_set($updated, $slug . '.buttons', array_merge(
-                array_get($section, 'buttons'),
-                ['revisions']
-            ));
+            array_set($updated, $slug, $section);
         }
 
         $builder->setSections($updated);
