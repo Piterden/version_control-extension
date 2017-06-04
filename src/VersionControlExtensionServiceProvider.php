@@ -11,7 +11,7 @@ use Defr\VersionControlExtension\Listener\AddButtonToTable;
 use Defr\VersionControlExtension\Listener\AddButtonToTree;
 use Defr\VersionControlExtension\Listener\RegisterButtons;
 use Defr\VersionControlExtension\Revision\Contract\RevisionRepositoryInterface;
-use Defr\VersionControlExtension\Revision\Listener\NewRevision;
+use Defr\VersionControlExtension\Revision\Listener\AddRevision;
 use Defr\VersionControlExtension\Revision\RevisionModel;
 use Defr\VersionControlExtension\Revision\RevisionRepository;
 
@@ -43,9 +43,14 @@ class VersionControlExtensionServiceProvider extends AddonServiceProvider
      */
     protected $routes = [
         'admin/{namespace}/revisions/{parent?}'                  => 'Defr\VersionControlExtension\Http\Controller\Admin\RevisionsController@shortIndex',
+
         'admin/{namespace}/{slug}/revisions/{parent?}'           => 'Defr\VersionControlExtension\Http\Controller\Admin\RevisionsController@index',
+
         'admin/{namespace}/show_revision/{parent?}/{id?}'        => 'Defr\VersionControlExtension\Http\Controller\Admin\RevisionsController@shortShow',
+
         'admin/{namespace}/{slug}/show_revision/{parent?}/{id?}' => 'Defr\VersionControlExtension\Http\Controller\Admin\RevisionsController@show',
+
+        'admin/{namespace}/restore_revision/{id}'                            => 'Defr\VersionControlExtension\Http\Controller\Admin\RevisionsController@restore',
     ];
 
     /**
@@ -64,7 +69,7 @@ class VersionControlExtensionServiceProvider extends AddonServiceProvider
             AddButtonToControlPanel::class,
         ],
         FormWasValidated::class => [
-            NewRevision::class,
+            AddRevision::class,
         ],
     ];
 

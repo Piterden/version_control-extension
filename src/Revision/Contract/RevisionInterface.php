@@ -31,7 +31,7 @@ interface RevisionInterface extends EntryInterface
      *
      * @return int
      */
-    public function getParent();
+    public function getParentId();
 
     /**
      * Get ID of parent entry

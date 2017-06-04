@@ -7,25 +7,25 @@ use Defr\VersionControlExtension\Revision\Contract\RevisionInterface;
 class RevisionModel extends VersionControlRevisionsEntryModel implements RevisionInterface
 {
 
-    /**
-     * @var mixed
-     */
-    protected $namespace;
+    // /**
+    //  * @var mixed
+    //  */
+    // protected $namespace;
 
-    /**
-     * @var mixed
-     */
-    protected $slug;
+    // /**
+    //  * @var mixed
+    //  */
+    // protected $slug;
 
-    /**
-     * @var mixed
-     */
-    protected $parent;
+    // /**
+    //  * @var mixed
+    //  */
+    // protected $parent;
 
-    /**
-     * @var mixed
-     */
-    protected $data;
+    // /**
+    //  * @var mixed
+    //  */
+    // protected $data;
 
     /**
      * Get stream namespace
@@ -66,7 +66,7 @@ class RevisionModel extends VersionControlRevisionsEntryModel implements Revisio
      *
      * @return int
      */
-    public function getParent()
+    public function getParentId()
     {
         return $this->parent;
     }

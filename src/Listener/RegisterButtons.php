@@ -33,5 +33,16 @@ class RegisterButtons
                 'href' => 'admin/{entry.namespace}/show_revision/{entry.parent}/{entry.id}',
             ]
         );
+
+        $registry->register(
+            'restore_revision',
+            [
+                'button' => 'prompt',
+                'type'   => 'warning',
+                'text'   => 'defr.extension.version_control::button.restore_revision',
+                'icon'   => 'fa fa-hand-o-left',
+                'href'   => 'admin/{entry.namespace}/restore_revision/{entry.id}',
+            ]
+        );
     }
 }

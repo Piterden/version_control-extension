@@ -22,6 +22,7 @@ class RevisionTableButtons
         : 'admin/{entry.namespace}/show_revision/{entry.parent}/{entry.id}';
 
         $builder->setButtons([
+            'restore_revision',
             'view' => [
                 'href' => $href,
             ],

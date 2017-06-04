@@ -1,6 +1,7 @@
 <?php namespace Defr\VersionControlExtension\Http\Controller\Admin;
 
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
+use Defr\VersionControlExtension\Revision\Command\RestoreRevision;
 use Defr\VersionControlExtension\Revision\Form\RevisionFormBuilder;
 use Defr\VersionControlExtension\Revision\Table\RevisionTableBuilder;
 
@@ -44,7 +45,7 @@ class RevisionsController extends AdminController
     }
 
     /**
-     * { function_description }
+     * Show one revision item
      *
      * @param  RevisionFormBuilder $form
      * @param  string              $namespace The namespace
@@ -65,13 +66,13 @@ class RevisionsController extends AdminController
     }
 
     /**
-     * { function_description }
+     * Show short route of one item of revision
      *
      * @param  RevisionFormBuilder $form
      * @param  string              $namespace The namespace
      * @param  string              $parent    The parent
      * @param  mixed               $id        The identifier
-     * @return Response            ( description_of_the_return_value )
+     * @return Response
      */
     public function shortShow(
         RevisionFormBuilder $form,
@@ -81,5 +82,21 @@ class RevisionsController extends AdminController
     )
     {
         return $form->render($id);
+    }
+
+    /**
+     * Restore one revision
+     *
+     * @param RevisionTableBuilder $table The table
+     * @param integer              $id    The identifier
+     */
+    public function restore(RevisionTableBuilder $table, $namespace, $id)
+    {
+        if (!$this->dispatch(new RestoreRevision($id)))
+        {
+            throw new \Exception('Can\'t restore revision, sorry ((');
+        }
+
+        return $table->render();
     }
 }
