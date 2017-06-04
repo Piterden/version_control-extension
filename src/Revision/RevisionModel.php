@@ -1,10 +1,31 @@
 <?php namespace Defr\VersionControlExtension\Revision;
 
 use Anomaly\Streams\Platform\Model\VersionControl\VersionControlRevisionsEntryModel;
+use Anomaly\Streams\Platform\Stream\StreamRepository;
 use Defr\VersionControlExtension\Revision\Contract\RevisionInterface;
 
 class RevisionModel extends VersionControlRevisionsEntryModel implements RevisionInterface
 {
+
+    /**
+     * @var mixed
+     */
+    protected $namespace;
+
+    /**
+     * @var mixed
+     */
+    protected $slug;
+
+    /**
+     * @var mixed
+     */
+    protected $parent;
+
+    /**
+     * @var mixed
+     */
+    protected $data;
 
     /**
      * Get stream namespace
@@ -27,6 +48,20 @@ class RevisionModel extends VersionControlRevisionsEntryModel implements Revisio
     }
 
     /**
+     * Get stream model
+     *
+     * @return StreamInterface
+     */
+    public function getParentStream()
+    {
+        return app()->make(StreamRepository::class)
+            ->findBySlugAndNamespace(
+                $this->getSlug(),
+                $this->getNamespace()
+            );
+    }
+
+    /**
      * Get ID of parent entry
      *
      * @return int
@@ -34,6 +69,36 @@ class RevisionModel extends VersionControlRevisionsEntryModel implements Revisio
     public function getParent()
     {
         return $this->parent;
+    }
+
+    /**
+     * Get ID of parent entry
+     *
+     * @return EntryInterface
+     */
+    public function getParentModel()
+    {
+        return $this->getParent();
+    }
+
+    /**
+     * Get data in JSON string format
+     *
+     * @return string
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
+     * Get data in PHP array format
+     *
+     * @return array
+     */
+    public function getDataArray()
+    {
+        return json_decode($this->data, true);
     }
 
     /**

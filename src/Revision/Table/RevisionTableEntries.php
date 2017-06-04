@@ -25,32 +25,34 @@ class RevisionTableEntries
     /**
      * Handle the command
      *
-     * @param  RevisionTableBuilder $builder
+     * @param RevisionTableBuilder $builder
      */
     public function handle(RevisionTableBuilder $builder)
     {
         $parameters = app('request')->route()->parameters();
 
-        $namespace = array_get($parameters, 'namespace', '');
-        $parent    = array_get($parameters, 'parent', false);
+        if (!$namespace = array_get($parameters, 'namespace'))
+        {
+            return;
+        }
 
         $slug = array_get($parameters, 'slug', $namespace);
 
-        if ($parent)
+        if (!$parent = array_get($parameters, 'parent'))
         {
             return $builder->setTableEntries(
-                $this->revisions->findAllByNamespaceSlugAndParent(
+                $this->revisions->findAllByNamespaceAndSlug(
                     $namespace,
-                    $slug,
-                    $parent
+                    $slug
                 )
             );
         }
 
         return $builder->setTableEntries(
-            $this->revisions->findAllByNamespaceAndSlug(
+            $this->revisions->findAllByNamespaceSlugAndParent(
                 $namespace,
-                $slug
+                $slug,
+                $parent
             )
         );
     }

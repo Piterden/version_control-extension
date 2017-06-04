@@ -10,14 +10,29 @@ class RevisionFormBuilder extends FormBuilder
      *
      * @var array|string
      */
-    protected $fields = [];
+    protected $fields = [
+        'namespace' => [
+            'disabled' => true,
+        ],
+        'slug'      => [
+            'disabled' => true,
+        ],
+        'parent'    => [
+            'disabled' => true,
+        ],
+        'data' => [
+            'disabled' => true,
+        ],
+    ];
 
     /**
      * Fields to skip.
      *
      * @var array|string
      */
-    protected $skips = [];
+    protected $skips = [
+        // 'data',
+    ];
 
     /**
      * The form actions.
@@ -39,13 +54,6 @@ class RevisionFormBuilder extends FormBuilder
      * @var array
      */
     protected $options = [];
-
-    /**
-     * The form sections.
-     *
-     * @var array
-     */
-    protected $sections = [];
 
     /**
      * The form assets.
