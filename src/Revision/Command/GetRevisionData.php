@@ -1,7 +1,7 @@
 <?php namespace Defr\VersionControlExtension\Revision\Command;
 
 /**
- *
+ * Class for get revision data.
  */
 class GetRevisionData
 {

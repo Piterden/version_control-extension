@@ -2,7 +2,6 @@
 
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 use Defr\VersionControlExtension\Revision\Form\RevisionFormBuilder;
-use Defr\VersionControlExtension\Revision\Table\Command\SetRevisionTableEntries;
 use Defr\VersionControlExtension\Revision\Table\RevisionTableBuilder;
 
 class RevisionsController extends AdminController
@@ -12,6 +11,9 @@ class RevisionsController extends AdminController
      * Display an index of existing entries.
      *
      * @param  RevisionTableBuilder $table
+     * @param  string               $namespace The namespace
+     * @param  string               $slug      The slug
+     * @param  mixed                $parent    The parent
      * @return Response
      */
     public function index(
@@ -28,6 +30,8 @@ class RevisionsController extends AdminController
      * Display an index of existing entries.
      *
      * @param  RevisionTableBuilder $table
+     * @param  string               $namespace The namespace
+     * @param  mixed                $parent    The parent
      * @return Response
      */
     public function shortIndex(
@@ -40,10 +44,14 @@ class RevisionsController extends AdminController
     }
 
     /**
-     * @param RevisionFormBuilder $form
-     * @param $namespace
-     * @param $slug
-     * @param $id
+     * { function_description }
+     *
+     * @param  RevisionFormBuilder $form
+     * @param  string              $namespace The namespace
+     * @param  string              $slug      The slug
+     * @param  mixed               $parent    The parent
+     * @param  mixed               $id        The identifier
+     * @return Response
      */
     public function show(
         RevisionFormBuilder $form,
@@ -57,9 +65,13 @@ class RevisionsController extends AdminController
     }
 
     /**
-     * @param RevisionFormBuilder $form
-     * @param $namespace
-     * @param $id
+     * { function_description }
+     *
+     * @param  RevisionFormBuilder $form
+     * @param  string              $namespace The namespace
+     * @param  string              $parent    The parent
+     * @param  mixed               $id        The identifier
+     * @return Response            ( description_of_the_return_value )
      */
     public function shortShow(
         RevisionFormBuilder $form,

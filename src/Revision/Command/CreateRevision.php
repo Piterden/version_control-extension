@@ -4,6 +4,9 @@ use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 use Defr\VersionControlExtension\Revision\Contract\RevisionRepositoryInterface;
 
+/**
+ * Class for create revision.
+ */
 class CreateRevision
 {
 
@@ -27,7 +30,7 @@ class CreateRevision
     /**
      * Handle the command
      *
-     * @param SettingRepositoryInterface $settings
+     * @param SettingRepositoryInterface  $settings
      * @param RevisionRepositoryInterface $revisions
      */
     public function handle(

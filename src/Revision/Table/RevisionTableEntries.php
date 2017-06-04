@@ -2,6 +2,9 @@
 
 use Defr\VersionControlExtension\Revision\Contract\RevisionRepositoryInterface;
 
+/**
+ * Class for revision table entries.
+ */
 class RevisionTableEntries
 {
 
@@ -25,7 +28,8 @@ class RevisionTableEntries
     /**
      * Handle the command
      *
-     * @param RevisionTableBuilder $builder
+     * @param  RevisionTableBuilder $builder
+     * @return <type>               ( description_of_the_return_value )
      */
     public function handle(RevisionTableBuilder $builder)
     {

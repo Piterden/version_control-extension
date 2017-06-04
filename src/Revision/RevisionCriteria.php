@@ -8,6 +8,7 @@ class RevisionCriteria extends EntryCriteria
     /**
      * By namespace limiting
      *
+     * @param  string       $namespace The namespace
      * @param  $namespace
      * @return $this
      */
@@ -33,6 +34,7 @@ class RevisionCriteria extends EntryCriteria
     /**
      * By slug limiting
      *
+     * @param  <type>  $slug The slug
      * @param  $slug
      * @return $this
      */
@@ -46,9 +48,9 @@ class RevisionCriteria extends EntryCriteria
     /**
      * Add the parent constraint.
      *
-     * @param  $namespace
-     * @param  $slug
-     * @param  $identifier
+     * @param  string  $namespace  The namespace
+     * @param  string  $slug       The slug
+     * @param  mixed   $identifier The identifier
      * @return $this
      */
     public function ofParent(

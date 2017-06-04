@@ -1,12 +1,19 @@
 <?php namespace Defr\VersionControlExtension\Revision\Table;
 
+/**
+ * Class for revision table buttons.
+ *
+ * @package    defr.extension.version_control
+ *
+ * @author     Denis Efremov <efremov.a.denis@gmail.com>
+ */
 class RevisionTableButtons
 {
 
     /**
      * Handle the command
      *
-     * @param  RevisionTableBuilder $builder
+     * @param RevisionTableBuilder $builder
      */
     public function handle(RevisionTableBuilder $builder)
     {

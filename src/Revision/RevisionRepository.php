@@ -26,8 +26,8 @@ class RevisionRepository extends EntryRepository implements RevisionRepositoryIn
     /**
      * Find all revisions of one stream
      *
-     * @param  $namespace
-     * @param  $slug
+     * @param  string               $namespace The namespace
+     * @param  string               $slug      The slug
      * @return RevisionCollection
      */
     public function findAllByNamespaceAndSlug(
@@ -44,9 +44,9 @@ class RevisionRepository extends EntryRepository implements RevisionRepositoryIn
     /**
      * Find all revisions of one stream
      *
-     * @param  $namespace
-     * @param  $slug
-     * @param  $identifier
+     * @param  string               $namespace  The namespace
+     * @param  string               $slug       The slug
+     * @param  nixed                $identifier The identifier
      * @return RevisionCollection
      */
     public function findAllByNamespaceSlugAndParent(

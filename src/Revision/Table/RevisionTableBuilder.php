@@ -2,6 +2,13 @@
 
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
 
+/**
+ * RevisionTableBuilder class
+ *
+ * @package    defr.extension.version_control
+ *
+ * @author     Denis Efremov <efremov.a.denis@gmail.com>
+ */
 class RevisionTableBuilder extends TableBuilder
 {
 

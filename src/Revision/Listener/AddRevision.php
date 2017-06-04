@@ -4,7 +4,14 @@ use Anomaly\Streams\Platform\Ui\Form\Event\FormWasValidated;
 use Defr\VersionControlExtension\Revision\Command\CreateRevision;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
-class NewRevision
+/**
+ * Class for add revision.
+ *
+ * @package    defr.extension.version_control
+ *
+ * @author     Denis Efremov <efremov.a.denis@gmail.com>
+ */
+class AddRevision
 {
 
     use DispatchesJobs;

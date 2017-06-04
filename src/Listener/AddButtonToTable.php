@@ -29,7 +29,7 @@ class AddButtonToTable
     /**
      * Handle the event
      *
-     * @param  TableIsQuerying            $event
+     * @param TableIsQuerying $event
      */
     public function handle(TableIsQuerying $event)
     {
