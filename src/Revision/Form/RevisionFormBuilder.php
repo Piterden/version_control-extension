@@ -11,18 +11,7 @@ class RevisionFormBuilder extends FormBuilder
      * @var array|string
      */
     protected $fields = [
-        'namespace' => [
-            'disabled' => true,
-        ],
-        'slug'      => [
-            'disabled' => true,
-        ],
-        'parent'    => [
-            'disabled' => true,
-        ],
-        'data' => [
-            'disabled' => true,
-        ],
+
     ];
 
     /**
