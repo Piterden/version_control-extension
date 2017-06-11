@@ -12,7 +12,7 @@ class RevisionCriteria extends EntryCriteria
      * @param  $namespace
      * @return $this
      */
-    public function ofNamespace($namespace)
+    public function namespace ($namespace)
     {
         $this->query->where('namespace', $namespace);
 
@@ -38,7 +38,7 @@ class RevisionCriteria extends EntryCriteria
      * @param  $slug
      * @return $this
      */
-    public function ofSlug($slug)
+    public function slug($slug)
     {
         $this->query->where('slug', $slug);
 
@@ -53,16 +53,15 @@ class RevisionCriteria extends EntryCriteria
      * @param  mixed   $identifier The identifier
      * @return $this
      */
-    public function ofParent(
-        $namespace,
-        $slug,
-        $identifier
-    )
+    public function parent(EntryInterface $parent)
     {
-        $this->query
-            ->where('parent', $identifier)
-            ->where('namespace', $namespace)
-            ->where('slug', $slug);
+        $stream = $parent->getStream();
+
+        $this->query->where([
+            'parent'    => $parent->getId(),
+            'namespace' => $stream->getNamespace(),
+            'slug'      => $stream->getSlug(),
+        ]);
 
         return $this;
     }

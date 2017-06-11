@@ -5,26 +5,38 @@ use Anomaly\Streams\Platform\Support\Resolver;
 use Anomaly\Streams\Platform\Ui\Tree\Event\TreeIsQuerying;
 
 /**
- * Class AddButtonToTree
+ * Class ModifyTree
  */
-class AddButtonToTree
+class ModifyTree
 {
 
     /**
-     * Repository of settings
+     * Settings repository
      *
      * @var SettingRepositoryInterface
      */
     protected $settings;
 
     /**
-     * Create an instance of CreateRevision class
+     * Resolver
      *
-     * @param SettingRepositoryInterface $settings
+     * @var Resolver
      */
-    public function __construct(SettingRepositoryInterface $settings)
+    protected $resolver;
+
+    /**
+     * Create an instance of ModifyTree class
+     *
+     * @param SettingRepositoryInterface $settings Settings repository
+     * @param Resolver                   $resolver The resolver
+     */
+    public function __construct(
+        SettingRepositoryInterface $settings,
+        Resolver $resolver
+    )
     {
         $this->settings = $settings;
+        $this->resolver = $resolver;
     }
 
     /**
@@ -59,8 +71,6 @@ class AddButtonToTree
 
         if (is_string($buttons))
         {
-            $resolver = new Resolver($this->container);
-
             $resolver->resolve($buttons, ['builder' => $builder]);
         }
 

@@ -35,10 +35,10 @@ class RevisionRepository extends EntryRepository implements RevisionRepositoryIn
         $slug
     )
     {
-        return $this->model
-            ->where('namespace', $namespace)
-            ->where('slug', $slug)
-            ->get();
+        return $this->model->where([
+            'namespace' => $namespace,
+            'slug'      => $slug,
+        ])->get();
     }
 
     /**
@@ -55,12 +55,10 @@ class RevisionRepository extends EntryRepository implements RevisionRepositoryIn
         $identifier
     )
     {
-        return $this->model
-            ->where([
-                'namespace' => $namespace,
-                'slug'      => $slug,
-                'parent'    => $identifier,
-            ])
-            ->get();
+        return $this->model->where([
+            'namespace' => $namespace,
+            'slug'      => $slug,
+            'parent'    => $identifier,
+        ])->get();
     }
 }

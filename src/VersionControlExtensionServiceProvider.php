@@ -7,9 +7,9 @@ use Anomaly\Streams\Platform\Ui\Form\Event\FormWasValidated;
 use Anomaly\Streams\Platform\Ui\Table\Event\TableIsQuerying;
 use Anomaly\Streams\Platform\Ui\Tree\Event\TreeIsQuerying;
 use Defr\VersionControlExtension\Command\RegisterButtons;
-use Defr\VersionControlExtension\Listener\AddButtonToControlPanel;
-use Defr\VersionControlExtension\Listener\AddButtonToTable;
-use Defr\VersionControlExtension\Listener\AddButtonToTree;
+use Defr\VersionControlExtension\Listener\ModifyControlPanel;
+use Defr\VersionControlExtension\Listener\ModifyTable;
+use Defr\VersionControlExtension\Listener\ModifyTree;
 use Defr\VersionControlExtension\Revision\Contract\RevisionRepositoryInterface;
 use Defr\VersionControlExtension\Revision\Listener\AddRevision;
 use Defr\VersionControlExtension\Revision\RevisionModel;
@@ -60,13 +60,13 @@ class VersionControlExtensionServiceProvider extends AddonServiceProvider
      */
     protected $listeners = [
         TableIsQuerying::class  => [
-            AddButtonToTable::class,
+            ModifyTable::class,
         ],
         TreeIsQuerying::class   => [
-            AddButtonToTree::class,
+            ModifyTree::class,
         ],
         GatherSections::class   => [
-            AddButtonToControlPanel::class,
+            ModifyControlPanel::class,
         ],
         FormWasValidated::class => [
             AddRevision::class,

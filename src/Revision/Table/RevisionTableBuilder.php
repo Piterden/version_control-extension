@@ -1,5 +1,6 @@
 <?php namespace Defr\VersionControlExtension\Revision\Table;
 
+use Anomaly\Streams\Platform\Stream\Contract\StreamRepositoryInterface;
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
 
 /**
@@ -19,9 +20,9 @@ class RevisionTableBuilder extends TableBuilder
      */
     protected $columns = [
         'entry.created_at',
-        'entry.namespace',
-        'entry.slug',
-        'entry.parent',
+        'namespace',
+        'slug',
+        'parent',
     ];
 
     /**
@@ -32,4 +33,6 @@ class RevisionTableBuilder extends TableBuilder
     protected $actions = [
         'delete',
     ];
+
+
 }
