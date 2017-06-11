@@ -81,7 +81,7 @@ class RevisionsController extends AdminController
         $id = null
     )
     {
-        return $form->render($id);
+        return $this->show($form, $namespace, $namespace, $parent, $id);
     }
 
     /**

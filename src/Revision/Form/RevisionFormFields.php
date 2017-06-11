@@ -16,42 +16,42 @@ class RevisionFormSections
      */
     public function handle(RevisionFormBuilder $builder)
     {
-        /* @var FieldType $dataField */
-        $dataField = $builder->getFormFields()->first(
-            function (FieldType $value)
-            {
-                return $value->field == 'data';
-            }
-        );
+        // /* @var FieldType $dataField */
+        // $dataField = $builder->getFormFields()->first(
+        //     function (FieldType $value)
+        //     {
+        //         return $value->field == 'data';
+        //     }
+        // );
 
-        $revisionData = json_decode($dataField->value, true);
+        // $revisionData = json_decode($dataField->value, true);
 
-        $entry = $this->dispatch(new GetRevisionData($revisionData));
+        // $entry = $this->dispatch(new GetRevisionData($revisionData));
 
-        $fields = [];
+        // $fields = [];
 
-        foreach ($entry as $key => $value)
-        {
-            array_set($fields, 'entry_'.$key, [
-                'disabled' => true,
-                'type'     => 'anomaly.field_type.text',
-                'field'    => $key,
-            ]);
-        }
+        // foreach ($entry as $key => $value)
+        // {
+        //     array_set($fields, 'entry_'.$key, [
+        //         'disabled' => true,
+        //         'type'     => 'anomaly.field_type.text',
+        //         'field'    => $key,
+        //     ]);
+        // }
 
-        $builder->setFields(array_merge(
-            [
-                'namespace' => [
-                    'disabled' => true,
-                ],
-                'slug'      => [
-                    'disabled' => true,
-                ],
-                'parent'    => [
-                    'disabled' => true,
-                ],
-            ],
-            $fields
-        ));
+        // $builder->setFields(array_merge(
+        //     [
+        //         'namespace' => [
+        //             'disabled' => true,
+        //         ],
+        //         'slug'      => [
+        //             'disabled' => true,
+        //         ],
+        //         'parent'    => [
+        //             'disabled' => true,
+        //         ],
+        //     ],
+        //     $fields
+        // ));
     }
 }

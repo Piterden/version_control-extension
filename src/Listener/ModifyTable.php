@@ -47,9 +47,9 @@ class ModifyTable
      */
     public function handle(TableIsQuerying $event)
     {
-
         $enabled_streams = $this->settings->value(
-            'defr.extension.version_control::enabled_streams'
+            'defr.extension.version_control::enabled_streams',
+            []
         );
 
         /* @var TableBuilder $builder */

@@ -16,31 +16,38 @@ class RevisionFormSections
      */
     public function handle(RevisionFormBuilder $builder)
     {
-        /* @var FieldType $dataField */
-        $dataField = $builder->getFormFields()->first(
-            function (FieldType $value)
-            {
-                return $value->field == 'data';
-            }
-        );
+        // /* @var FieldType $dataField */
+        // $dataField = $builder->getFormFields()->first(
+        //     function (FieldType $value)
+        //     {
+        //         return $value->field == 'data';
+        //     }
+        // );
 
-        $revisionData = json_decode($dataField->value, true);
+        // $revisionData = json_decode($dataField->value, true);
 
-        $entry = $this->dispatch(new GetRevisionData($revisionData));
+        // $entry = $this->dispatch(new GetRevisionData($revisionData));
 
-        $builder->setSections(
-            [
-                'main' => [
-                    'fields' => [
-                        'namespace',
-                        'slug',
-                        'parent',
+        $builder->setSections([
+            'general' => [
+                'tabs' => [
+                    'main'     => [
+                        'title'  => 'defr.module.catalog::tab.main',
+                        'fields' => [
+                            'created_at',
+                            'namespace',
+                            'slug',
+                            'parent',
+                        ],
+                    ],
+                    'data'    => [
+                        'title'  => 'defr.module.catalog::tab.media',
+                        'fields' => [
+                            'data',
+                        ],
                     ],
                 ],
-                'data' => [
-                    'fields' => array_keys($entry),
-                ],
-            ]
-        );
+            ],
+        ]);
     }
 }

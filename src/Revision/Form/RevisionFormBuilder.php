@@ -11,7 +11,27 @@ class RevisionFormBuilder extends FormBuilder
      * @var array|string
      */
     protected $fields = [
+        'main' => [
+            'fields' => [
+                'namespace',
+                'slug',
+                'parent',
+            ],
+        ],
+        // 'data' => [
+        //     'fields' => '',
+        // ],
+    ];
 
+    /**
+     * The form sections.
+     *
+     * @var array|string
+     */
+    protected $sections = [
+        'namespace',
+        'slug',
+        'parent',
     ];
 
     /**
@@ -20,7 +40,7 @@ class RevisionFormBuilder extends FormBuilder
      * @var array|string
      */
     protected $skips = [
-        // 'data',
+        'data',
     ];
 
     /**

@@ -33,6 +33,4 @@ class RevisionTableBuilder extends TableBuilder
     protected $actions = [
         'delete',
     ];
-
-
 }
