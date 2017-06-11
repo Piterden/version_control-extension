@@ -1,6 +1,7 @@
 <?php namespace Defr\VersionControlExtension\Listener;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
+use Anomaly\Streams\Platform\Support\Resolver;
 use Anomaly\Streams\Platform\Ui\Tree\Event\TreeIsQuerying;
 
 /**
@@ -29,7 +30,7 @@ class AddButtonToTree
     /**
      * Handle the event
      *
-     * @param  TreeIsQuerying $event
+     * @param TreeIsQuerying $event
      */
     public function handle(TreeIsQuerying $event)
     {
@@ -52,6 +53,15 @@ class AddButtonToTree
         ))
         {
             return;
+        }
+
+        $buttons = $builder->getButtons();
+
+        if (is_string($buttons))
+        {
+            $resolver = new Resolver($this->container);
+
+            $resolver->resolve($buttons, ['builder' => $builder]);
         }
 
         $buttons = $builder->getButtons();

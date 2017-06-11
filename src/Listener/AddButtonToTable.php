@@ -43,8 +43,6 @@ class AddButtonToTable
      */
     public function handle(TableIsQuerying $event)
     {
-        $resolver = new Resolver($this->container);
-
         $enabled_streams = $this->settings->value(
             'defr.extension.version_control::enabled_streams'
         );
@@ -75,6 +73,8 @@ class AddButtonToTable
 
         if (is_string($buttons))
         {
+            $resolver = new Resolver($this->container);
+
             $resolver->resolve($buttons, ['builder' => $builder]);
         }
 
