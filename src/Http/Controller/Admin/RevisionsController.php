@@ -4,6 +4,7 @@ use Anomaly\Streams\Platform\Http\Controller\AdminController;
 use Defr\VersionControlExtension\Revision\Command\RestoreRevision;
 use Defr\VersionControlExtension\Revision\Form\RevisionFormBuilder;
 use Defr\VersionControlExtension\Revision\Table\RevisionTableBuilder;
+use Anomaly\Streams\Platform\Stream\Contract\StreamRepositoryInterface;
 
 class RevisionsController extends AdminController
 {
@@ -17,12 +18,7 @@ class RevisionsController extends AdminController
      * @param  mixed                $parent    The parent
      * @return Response
      */
-    public function index(
-        RevisionTableBuilder $table,
-        $namespace,
-        $slug,
-        $parent = null
-    )
+    public function index(RevisionTableBuilder $table, $namespace, $slug, $parent)
     {
         return $table->render();
     }
@@ -35,11 +31,7 @@ class RevisionsController extends AdminController
      * @param  mixed                $parent    The parent
      * @return Response
      */
-    public function shortIndex(
-        RevisionTableBuilder $table,
-        $namespace,
-        $parent = null
-    )
+    public function shortIndex(RevisionTableBuilder $table, $namespace, $parent)
     {
         return $this->index($table, $namespace, $namespace, $parent);
     }
@@ -54,14 +46,18 @@ class RevisionsController extends AdminController
      * @param  mixed               $id        The identifier
      * @return Response
      */
-    public function show(
-        RevisionFormBuilder $form,
-        $namespace,
-        $slug,
-        $parent,
-        $id = null
-    )
+    public function show(StreamRepositoryInterface $streams, RevisionFormBuilder $form, $namespace, $slug, $parent, $id)
     {
+
+        // dd($streams->findBySlugAndNamespace($slug, $namespace)->getFieldType('parent'));
+        // $this->dispatch(new SetModelsFromResponse($builder));
+        $parentModel = $streams->findBySlugAndNamespace($slug, $namespace)->getEntryModel();
+
+        $parentEntry = $parentModel->where('id', $parent)->first();
+
+        $form->setParent($parentEntry);
+        // dd($form->setParent($parentEntry));
+
         return $form->render($id);
     }
 
@@ -74,14 +70,9 @@ class RevisionsController extends AdminController
      * @param  mixed               $id        The identifier
      * @return Response
      */
-    public function shortShow(
-        RevisionFormBuilder $form,
-        $namespace,
-        $parent,
-        $id = null
-    )
+    public function shortShow(StreamRepositoryInterface $streams, RevisionFormBuilder $form, $namespace, $parent, $id)
     {
-        return $this->show($form, $namespace, $namespace, $parent, $id);
+        return $this->show($streams, $form, $namespace, $namespace, $parent, $id);
     }
 
     /**

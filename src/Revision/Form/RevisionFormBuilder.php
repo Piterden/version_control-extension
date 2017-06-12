@@ -1,47 +1,33 @@
 <?php namespace Defr\VersionControlExtension\Revision\Form;
 
+use Anomaly\Streams\Platform\Stream\Contract\StreamRepositoryInterface;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
+use Defr\VersionControlExtension\Revision\RevisionModel;
+use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 
 class RevisionFormBuilder extends FormBuilder
 {
 
     /**
-     * The form fields.
+     * Parent entry
      *
-     * @var array|string
+     * @var EntryInterface
      */
-    protected $fields = [
-        'main' => [
-            'fields' => [
-                'namespace',
-                'slug',
-                'parent',
-            ],
-        ],
-        // 'data' => [
-        //     'fields' => '',
-        // ],
-    ];
+    protected $parent;
 
     /**
-     * The form sections.
+     * Form model
      *
-     * @var array|string
+     * @var Model
      */
-    protected $sections = [
-        'namespace',
-        'slug',
-        'parent',
-    ];
+    protected $model = RevisionModel::class;
 
     /**
      * Fields to skip.
      *
      * @var array|string
      */
-    protected $skips = [
-        'data',
-    ];
+    protected $skips = [];
 
     /**
      * The form actions.
@@ -62,7 +48,9 @@ class RevisionFormBuilder extends FormBuilder
      *
      * @var array
      */
-    protected $options = [];
+    protected $options = [
+        'sorted' => ['created_at', 'DESC'],
+    ];
 
     /**
      * The form assets.
@@ -71,4 +59,42 @@ class RevisionFormBuilder extends FormBuilder
      */
     protected $assets = [];
 
+    /**
+     * Gets the parent.
+     *
+     * @return EntryInterface The parent.
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * Sets the parent.
+     *
+     * @param  EntryInterface $parent The parent entry
+     * @return $this
+     */
+    public function setParent(EntryInterface $parent)
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    public function onReady()
+    {
+        $this->setFields([
+            'created_at' => [
+                'type' => 'anomaly.field_type.datetime',
+            ],
+            'namespace',
+            'slug',
+            'parent'     => [
+                'config' => [
+                    'related' => get_class($this->getParent()),
+                ],
+            ],
+        ]);
+    }
 }

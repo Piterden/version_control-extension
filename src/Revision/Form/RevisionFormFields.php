@@ -1,10 +1,8 @@
 <?php namespace Defr\VersionControlExtension\Revision\Form;
 
-use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
-use Defr\VersionControlExtension\Revision\Command\GetRevisionData;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
-class RevisionFormSections
+class RevisionFormFields
 {
 
     use DispatchesJobs;
@@ -39,19 +37,5 @@ class RevisionFormSections
         //     ]);
         // }
 
-        // $builder->setFields(array_merge(
-        //     [
-        //         'namespace' => [
-        //             'disabled' => true,
-        //         ],
-        //         'slug'      => [
-        //             'disabled' => true,
-        //         ],
-        //         'parent'    => [
-        //             'disabled' => true,
-        //         ],
-        //     ],
-        //     $fields
-        // ));
     }
 }
