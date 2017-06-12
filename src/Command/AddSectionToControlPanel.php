@@ -67,13 +67,14 @@ class AddSectionToControlPanel
         }
 
         $sections = $this->builder->getSections();
+        $capital = ucfirst($slug);
 
         array_set($sections, $slug, array_merge(
             array_get($sections, $slug, []),
             [
                 'sections' => [
                     'revisions' => [
-                        'title'  => 'Revisions',
+                        'title'  => "{$capital} revisions",
                         'hidden' => false,
                         'href'   => $href,
                     ],

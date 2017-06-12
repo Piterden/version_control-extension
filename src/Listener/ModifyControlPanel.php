@@ -1,7 +1,6 @@
 <?php namespace Defr\VersionControlExtension\Listener;
 
 use Anomaly\Streams\Platform\Ui\ControlPanel\Component\Section\Event\GatherSections;
-use Defr\VersionControlExtension\Command\AddButtonToControlPanel;
 use Defr\VersionControlExtension\Command\AddSectionToControlPanel;
 use Defr\VersionControlExtension\Command\RemoveButtonsFromControlPanel;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -47,7 +46,5 @@ class ModifyControlPanel
         {
             return $this->dispatch(new RemoveButtonsFromControlPanel($builder));
         }
-
-        $this->dispatch(new AddButtonToControlPanel($builder));
     }
 }
