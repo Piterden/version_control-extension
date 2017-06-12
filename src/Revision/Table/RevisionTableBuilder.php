@@ -22,7 +22,7 @@ class RevisionTableBuilder extends TableBuilder
         'entry.created_at',
         'namespace',
         'slug',
-        'parent',
+        'entry.parent_id',
     ];
 
     /**

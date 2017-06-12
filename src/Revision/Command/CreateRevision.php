@@ -1,6 +1,5 @@
 <?php namespace Defr\VersionControlExtension\Revision\Command;
 
-use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 use Defr\VersionControlExtension\Revision\Contract\RevisionRepositoryInterface;
 
@@ -30,13 +29,9 @@ class CreateRevision
     /**
      * Handle the command
      *
-     * @param SettingRepositoryInterface  $settings
      * @param RevisionRepositoryInterface $revisions
      */
-    public function handle(
-        SettingRepositoryInterface $settings,
-        RevisionRepositoryInterface $revisions
-    )
+    public function handle(RevisionRepositoryInterface $revisions)
     {
         /* @var StreamInterface|null $stream */
         if (!$stream = $this->builder->getFormStream())
@@ -44,45 +39,18 @@ class CreateRevision
             return;
         }
 
-        $namespace = $stream->getNamespace();
-        $slug      = $stream->getSlug();
+        $parent = $this->builder->getFormEntry();
 
-        if (!in_array(
-            $namespace . '_' . $slug,
-            $settings->value(
-                'defr.extension.version_control::enabled_streams',
-                []
-            )
-        ))
-        {
-            return;
-        }
+        $revisions->getModel()->getFieldType('parent')
+            ->mergeConfig([
+                'related' => get_class($parent),
+            ]);
 
-        $fields = [];
-
-        foreach ($this->builder->getFields() as $field)
-        {
-            $dot_path = array_get($field, 'translatable')
-            ? array_get($field, 'locale') . '.' . array_get($field, 'field')
-            : array_get($field, 'field');
-
-            array_set(
-                $fields,
-                $dot_path,
-                array_get($field, 'value')
-            );
-        }
-
-        $data = json_encode($fields);
-
-        $request = app('request');
-
-        $parent = is_numeric($request->segment(4))
-        ? $request->segment(4)
-        : $request->segment(5);
-
-        $revisions->create(
-            compact('namespace', 'slug', 'parent', 'data')
-        );
+        $revisions->create([
+            'namespace' => $stream->getNamespace(),
+            'parent_id' => $parent->getId(),
+            'slug'      => $stream->getSlug(),
+            'data'      => json_encode($parent->toArray()),
+        ]);
     }
 }

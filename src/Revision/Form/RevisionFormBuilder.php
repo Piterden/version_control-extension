@@ -88,13 +88,7 @@ class RevisionFormBuilder extends FormBuilder
             'created_at' => [
                 'type' => 'anomaly.field_type.datetime',
             ],
-            'namespace',
-            'slug',
-            'parent'     => [
-                'config' => [
-                    'related' => get_class($this->getParent()),
-                ],
-            ],
+            '*'
         ]);
     }
 }

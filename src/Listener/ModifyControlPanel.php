@@ -2,6 +2,7 @@
 
 use Anomaly\Streams\Platform\Ui\ControlPanel\Component\Section\Event\GatherSections;
 use Defr\VersionControlExtension\Command\AddButtonToControlPanel;
+use Defr\VersionControlExtension\Command\AddSectionToControlPanel;
 use Defr\VersionControlExtension\Command\RemoveButtonsFromControlPanel;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
@@ -39,6 +40,8 @@ class ModifyControlPanel
     {
         /* @var ControlPanelBuilder $builder */
         $builder = $event->getBuilder();
+
+        $this->dispatch(new AddSectionToControlPanel($builder));
 
         if (in_array('revisions', $this->request->segments()))
         {

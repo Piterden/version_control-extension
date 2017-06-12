@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 /**
  * Class for add button to control panel.
  */
-class AddButtonToControlPanel
+class AddSectionToControlPanel
 {
 
     /**
@@ -18,7 +18,7 @@ class AddButtonToControlPanel
     protected $builder;
 
     /**
-     * Create an instance of AddButtonToControlPanel class
+     * Create an instance of AddSectionToControlPanel class
      *
      * @param ControlPanelBuilder $builder The builder
      */
@@ -48,18 +48,13 @@ class AddButtonToControlPanel
             $slug = $namespace;
         }
 
-        $sections = $this->builder->getSections();
-
-        $enabled = in_array(
+        if (!in_array(
             $namespace . '_' . $slug,
             $settings->value(
                 'defr.extension.version_control::enabled_streams',
                 []
             )
-        );
-
-
-        if (!$enabled)
+        ))
         {
             return;
         }
@@ -71,20 +66,20 @@ class AddButtonToControlPanel
             $href = "admin/{$namespace}/revisions";
         }
 
-        $section = array_merge(
+        $sections = $this->builder->getSections();
+
+        array_set($sections, $slug, array_merge(
             array_get($sections, $slug, []),
             [
                 'sections' => [
                     'revisions' => [
-                        'title'   => 'Revisions',
-                        'hidden'  => false,
-                        'href'    => $href,
+                        'title'  => 'Revisions',
+                        'hidden' => false,
+                        'href'   => $href,
                     ],
                 ],
             ]
-        );
-
-        array_set($sections, $slug, $section);
+        ));
 
         $this->builder->setSections($sections);
     }

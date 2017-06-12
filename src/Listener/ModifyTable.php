@@ -47,13 +47,13 @@ class ModifyTable
      */
     public function handle(TableIsQuerying $event)
     {
-        $enabled_streams = $this->settings->value(
-            'defr.extension.version_control::enabled_streams',
-            []
-        );
-
         /* @var TableBuilder $builder */
         $builder = $event->getBuilder();
+
+        if ($builder->isAjax())
+        {
+            return;
+        }
 
         /* @var QueryBuilder $query */
         $query = $event->getQuery();
@@ -83,14 +83,9 @@ class ModifyTable
                 $query->where([
                     'namespace' => $namespace,
                     'slug'      => $slug,
-                    'parent'    => $parent,
+                    'parent_id' => $parent,
                 ])->get()
             );
-        }
-
-        if ($builder->isAjax())
-        {
-            return;
         }
 
         /* @var StreamInterface|null $stream */
@@ -101,7 +96,10 @@ class ModifyTable
 
         if (!in_array(
             $stream->getNamespace() . '_' . $stream->getSlug(),
-            $enabled_streams
+            $this->settings->value(
+                'defr.extension.version_control::enabled_streams',
+                []
+            )
         ))
         {
             return;

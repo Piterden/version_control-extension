@@ -18,7 +18,7 @@ class RevisionsController extends AdminController
      * @param  mixed                $parent    The parent
      * @return Response
      */
-    public function index(RevisionTableBuilder $table, $namespace, $slug, $parent)
+    public function index(RevisionTableBuilder $table, $namespace, $slug, $parent = 0)
     {
         return $table->render();
     }
@@ -31,7 +31,7 @@ class RevisionsController extends AdminController
      * @param  mixed                $parent    The parent
      * @return Response
      */
-    public function shortIndex(RevisionTableBuilder $table, $namespace, $parent)
+    public function shortIndex(RevisionTableBuilder $table, $namespace, $parent = 0)
     {
         return $this->index($table, $namespace, $namespace, $parent);
     }
@@ -46,7 +46,7 @@ class RevisionsController extends AdminController
      * @param  mixed               $id        The identifier
      * @return Response
      */
-    public function show(StreamRepositoryInterface $streams, RevisionFormBuilder $form, $namespace, $slug, $parent, $id)
+    public function show(StreamRepositoryInterface $streams, RevisionFormBuilder $form, $namespace, $slug, $parent, $id = 0)
     {
 
         // dd($streams->findBySlugAndNamespace($slug, $namespace)->getFieldType('parent'));
@@ -70,7 +70,7 @@ class RevisionsController extends AdminController
      * @param  mixed               $id        The identifier
      * @return Response
      */
-    public function shortShow(StreamRepositoryInterface $streams, RevisionFormBuilder $form, $namespace, $parent, $id)
+    public function shortShow(StreamRepositoryInterface $streams, RevisionFormBuilder $form, $namespace, $parent, $id = 0)
     {
         return $this->show($streams, $form, $namespace, $namespace, $parent, $id);
     }

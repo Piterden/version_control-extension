@@ -13,7 +13,10 @@ class DefrExtensionVersionControlCreateVersionControlFields extends Migration
     protected $fields = [
         'namespace' => 'anomaly.field_type.text',
         'slug'      => 'anomaly.field_type.text',
-        'parent'    => 'anomaly.field_type.relationship',
         'data'      => 'anomaly.field_type.textarea',
+        'parent'    => [
+            'type'   => 'anomaly.field_type.relationship',
+            'config' => [],
+        ],
     ];
 }
